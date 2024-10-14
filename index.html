@@ -64,16 +64,17 @@
     document.getElementById('phoneForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
+        const validPhoneNumbers = ["16620376707", "123456789", "1112223333"]; // 这里可以添加多个手机号
         const phoneInput = document.getElementById('phone').value;
-        const phoneRegex = /^[0-9]{10}$/; // Example regex: only 10 digits for a simple validation
         const errorElement = document.getElementById('error');
 
-        // Check if phone number matches the pattern
-        if (phoneRegex.test(phoneInput)) {
-            errorElement.style.display = 'none'; // Hide error message
-            window.location.href = 'https://udify.app/chat/WwtVqpoTigrJCDa7'; // Redirect if valid
+        // 验证输入的手机号是否在数组中
+        if (validPhoneNumbers.includes(phoneInput)) {
+            errorElement.style.display = 'none'; // 隐藏错误消息
+            window.location.href = 'https://udify.app/chat/WwtVqpoTigrJCDa7'; // 如果验证通过，跳转
         } else {
-            errorElement.style.display = 'block'; // Show error message
+            errorElement.textContent = 'The phone number is incorrect.';
+            errorElement.style.display = 'block'; // 显示错误消息
         }
     });
 </script>
