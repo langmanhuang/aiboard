@@ -61,17 +61,31 @@
 </div>
 
 <script>
-    document.getElementById('phoneForm').addEventListener('submit', function(e) {
+    const encodedPhoneNumbers = ["MTIzNDU2Nzg5MA==", "MDk4NzY1NDMyMQ==", "MTExMjIyMzMzMw=="]; 
+    const encodedRedirectUrl = "aHR0cHM6Ly91ZGlmeS5hcHAvY2hhdC9Xd3RWcXBvVGlnckpDRGE3";
+
+    // 解码函数
+    function decodeBase64(encodedString) {
+        return atob(encodedString); // 使用 atob() 解码 Base64
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const validPhoneNumbers = ["16620376707", "123456789", "1112223333"]; // 这里可以添加多个手机号
+        // 获取用户输入的手机号
         const phoneInput = document.getElementById('phone').value;
         const errorElement = document.getElementById('error');
 
-        // 验证输入的手机号是否在数组中
+        // 解码手机号列表
+        const validPhoneNumbers = encodedPhoneNumbers.map(decodeBase64);
+
+        // 验证输入的手机号是否在解码后的数组中
         if (validPhoneNumbers.includes(phoneInput)) {
             errorElement.style.display = 'none'; // 隐藏错误消息
-            window.location.href = 'https://udify.app/chat/WwtVqpoTigrJCDa7'; // 如果验证通过，跳转
+            
+            // 解码跳转链接并重定向
+            const redirectUrl = decodeBase64(encodedRedirectUrl);
+            window.location.href = redirectUrl; // 如果验证通过，跳转到解码后的 URL
         } else {
             errorElement.textContent = 'The phone number is incorrect.';
             errorElement.style.display = 'block'; // 显示错误消息
