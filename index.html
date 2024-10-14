@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Number Verification</title>
+    <title>Login Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@
             margin: 0;
             background-color: #f4f4f4;
         }
-        .container {
+        .login-container {
             text-align: center;
             background-color: white;
             padding: 20px;
@@ -38,10 +38,6 @@
             cursor: pointer;
             border-radius: 5px;
         }
-        button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
         .error {
             color: red;
             font-size: 14px;
@@ -51,9 +47,9 @@
 </head>
 <body>
 
-<div class="container">
+<div class="login-container">
     <h2>Enter Your Phone Number</h2>
-    <form id="phoneForm">
+    <form id="loginForm">
         <input type="text" id="phone" placeholder="Enter your phone number" required>
         <p class="error" id="error">Please enter a valid phone number.</p>
         <button type="submit">Verify & Continue</button>
@@ -61,8 +57,9 @@
 </div>
 
 <script>
-    const encodedPhoneNumbers = ["MTIzNDU2Nzg5MA==", "MDk4NzY1NDMyMQ==", "MTExMjIyMzMzMw=="]; 
-    const encodedRedirectUrl = "aHR0cHM6Ly91ZGlmeS5hcHAvY2hhdC9Xd3RWcXBvVGlnckpDRGE3";
+    // 使用 Base64 或其他简单编码方式来模糊化手机号和跳转链接
+    const encodedPhoneNumbers = ["MTIzNDU2Nzg5MA==", "MDk4NzY1NDMyMQ==", "MTExMjIyMzMzMw=="]; // Base64编码后的手机号
+    const encodedRedirectUrl = "aHR0cHM6Ly91ZGlmeS5hcHAvY2hhdC9Xd3RWcXBvVGlnckpDRGE3"; // Base64编码后的跳转链接
 
     // 解码函数
     function decodeBase64(encodedString) {
@@ -92,5 +89,6 @@
         }
     });
 </script>
+
 </body>
 </html>
